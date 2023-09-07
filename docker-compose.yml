@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    command:
+      # docker exec -it mysql-db /var/log/mysql/general.log でクエリログを見れる
+      - "--general-log=true"
+      - "--general-log-file=/var/log/mysql/general.log"
+    restart: always # コンテナが停止すると常に再起動
+    ports:
+      - "3306:3306" # user=root, pass=""
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
